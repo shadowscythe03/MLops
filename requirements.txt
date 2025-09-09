@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pandas
-newspaper3k
-beautifulsoup4
-requests
-vaderSentiment
-dvc
-pytest
