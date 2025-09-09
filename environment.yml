@@ -1,0 +1,17 @@
+name: mlops-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - fastapi
+  - uvicorn
+  - pandas
+  - beautifulsoup4
+  - requests
+  - dvc
+  - pytest
+  - pip:
+      - newspaper3k
+      - vaderSentiment
