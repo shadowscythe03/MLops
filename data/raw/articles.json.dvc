@@ -1,0 +1,5 @@
+outs:
+- md5: 80283e690478cca7b48ad7eefeb9a594
+  size: 133862
+  hash: md5
+  path: articles.json
