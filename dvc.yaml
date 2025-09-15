@@ -1,0 +1,9 @@
+stages:
+  scrape:
+    cmd: python src/scraping/scrape_articles.py
+    deps:
+      - src/scraping/scrape_articles.py
+    outs:
+      - data/raw/articles.json
+    params:
+      - scraping.feed_url
