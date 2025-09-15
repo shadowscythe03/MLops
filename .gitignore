@@ -19,7 +19,7 @@ build/
 .venv/
 env/
 *.conda
-*.yaml
+# *.yaml
 
 # OS-specific
 .DS_Store
