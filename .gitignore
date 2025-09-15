@@ -1,0 +1,38 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# DVC cache and lock files
+.dvc/cache/
+*.dvc.lock
+
+# Environment files
+.env
+.venv/
+env/
+*.conda
+# *.yaml
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Data files (optional if tracked by DVC)
+data/raw/
+data/processed/

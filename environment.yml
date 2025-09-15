@@ -1,0 +1,23 @@
+name: mlops
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core ML packages
+  - python=3.12
+  - pandas
+  - scikit-learn
+  - numpy
+  - scipy
+  - ipykernel
+  # Visualization
+  - seaborn
+  - matplotlib
+  - missingno
+  - lxml
+  # Pip packages
+  - pip
+  - pip:
+      - newspaper3k
+      - feedparser
+      - lxml_html_clean

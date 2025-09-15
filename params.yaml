@@ -1,0 +1,5 @@
+scraping:
+  feed_urls:
+    - https://feeds.bbci.co.uk/news/rss.xml
+    - https://www.reuters.com/rssFeed/topNews
+    - https://www.aljazeera.com/xml/rss/all.xml
