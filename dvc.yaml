@@ -6,4 +6,4 @@ stages:
     outs:
       - data/raw/articles.json
     params:
-      - scraping.feed_url
+      - scraping.feed_urls

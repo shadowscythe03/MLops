@@ -3,21 +3,30 @@ import yaml
 import json
 import newspaper
 import feedparser
+from datetime import datetime
+
 
 def scrape_news_from_feed(feed_url):
     articles = []
     feed = feedparser.parse(feed_url)
     for entry in feed.entries:
-        # create a newspaper article object
         article = newspaper.Article(entry.link)
-        # download and parse the article
-        article.download()
-        article.parse()
-        # extract relevant information
+        try:
+            article.download()
+            article.parse()
+        except Exception as e:
+            print(f"Failed to process {entry.link}: {e}")
+            continue
+
+        publish_date = article.publish_date
+        if isinstance(publish_date, datetime):
+            publish_date = publish_date.isoformat()  # Converts to 'YYYY-MM-DDTHH:MM:SS'
+
         articles.append({
+            'source': url,
             'title': article.title,
             'author': article.authors,
-            'publish_date': article.publish_date,
+            'publish_date': publish_date,
             'content': article.text
         })
     return articles
@@ -43,12 +52,12 @@ for url in feed_urls:
 
 
 # Ensure the output directory exists
-output_dir = os.path.join('..', 'data', 'raw')
+output_dir = os.path.join('data', 'raw')
 os.makedirs(output_dir, exist_ok=True)
 output_path = os.path.join(output_dir, 'articles.json')
-
+print(f"Scraped {len(all_articles)} articles from {len(feed_urls)} feeds.")
 # Save articles to JSON file
 with open(output_path, 'w', encoding='utf-8') as f:
-    json.dump(articles, f, ensure_ascii=False, indent=2)
+    json.dump(all_articles, f, ensure_ascii=False, indent=2)
 
 print(f"Articles saved to {output_path}")
