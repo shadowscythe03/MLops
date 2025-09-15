@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  scrape:
+    cmd: python src/scraping/scrape_articles.py
+    deps:
+    - path: src/scraping/scrape_articles.py
+      hash: md5
+      md5: 571d9b2a6c8219c098ae17f677bcf77f
+      size: 1852
+    params:
+      params.yaml:
+        scraping.feed_urls:
+        - https://feeds.bbci.co.uk/news/rss.xml
+        - https://www.reuters.com/rssFeed/topNews
+        - https://www.aljazeera.com/xml/rss/all.xml
+    outs:
+    - path: data/raw/articles.json
+      hash: md5
+      md5: 5af1aa071236e8518ed9462e1fa69de2
+      size: 219152
