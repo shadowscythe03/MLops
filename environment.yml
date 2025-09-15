@@ -17,6 +17,7 @@ dependencies:
   - lxml
   - unidecode
   - pytest
+  - fastapi
   # Pip packages
   - pip
   - pip:
