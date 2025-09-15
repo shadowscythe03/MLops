@@ -5,8 +5,8 @@ stages:
     deps:
     - path: src/scraping/scrape_articles.py
       hash: md5
-      md5: 571d9b2a6c8219c098ae17f677bcf77f
-      size: 1852
+      md5: 98ef7d5e911021dcdfaed3d7586b7b95
+      size: 2165
     params:
       params.yaml:
         scraping.feed_urls:
@@ -16,5 +16,25 @@ stages:
     outs:
     - path: data/raw/articles.json
       hash: md5
-      md5: 5af1aa071236e8518ed9462e1fa69de2
-      size: 219152
+      md5: 895338336f4cc611f730683144051918
+      size: 193754
+    - path: metrics.json
+      hash: md5
+      md5: 0eb86a31f4cf85be6dd387773e2b19b3
+      size: 100
+  preprocess:
+    cmd: python src/preprocessing/clean_articles.py
+    deps:
+    - path: data/raw/articles.json
+      hash: md5
+      md5: 895338336f4cc611f730683144051918
+      size: 193754
+    - path: src/preprocessing/clean_articles.py
+      hash: md5
+      md5: b9677f77f7a43ba7f7bee62203a933e5
+      size: 1187
+    outs:
+    - path: data/processed/articles_cleaned.json
+      hash: md5
+      md5: 025278a119428b0fbc5789c1fcdb0263
+      size: 187302

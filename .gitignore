@@ -36,3 +36,4 @@ Thumbs.db
 # Data files (optional if tracked by DVC)
 data/raw/
 data/processed/
+/metrics.json

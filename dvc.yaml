@@ -7,3 +7,12 @@ stages:
       - data/raw/articles.json
     params:
       - scraping.feed_urls
+    metrics:
+      - metrics.json
+  preprocess:
+    cmd: python src/preprocessing/clean_articles.py
+    deps:
+      - src/preprocessing/clean_articles.py
+      - data/raw/articles.json
+    outs:
+      - data/processed/articles_cleaned.json

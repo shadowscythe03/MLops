@@ -56,6 +56,18 @@ output_dir = os.path.join('data', 'raw')
 os.makedirs(output_dir, exist_ok=True)
 output_path = os.path.join(output_dir, 'articles.json')
 print(f"Scraped {len(all_articles)} articles from {len(feed_urls)} feeds.")
+
+metrics = {
+    "scraping": {
+        "article_count": len(all_articles),
+        "feed_count": len(feed_urls),
+        "avg_length": sum(len(a['content']) for a in all_articles) / len(all_articles)
+    }
+}
+
+with open("metrics.json", "w", encoding="utf-8") as f:
+    json.dump(metrics, f, indent=2)
+
 # Save articles to JSON file
 with open(output_path, 'w', encoding='utf-8') as f:
     json.dump(all_articles, f, ensure_ascii=False, indent=2)
