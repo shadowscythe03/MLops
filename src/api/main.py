@@ -83,3 +83,51 @@ def trends_graph(top_n: int = 10):
     plt.close()
 
     return StreamingResponse(buf, media_type="image/png")
+
+# ----------------- RAG Chatbot -----------------
+from pydantic import BaseModel
+from functools import lru_cache
+
+try:
+    from src.rag.chatbot import RAGChatbot
+except Exception:
+    # Fallback for various import styles depending on working dir
+    from rag.chatbot import RAGChatbot  # type: ignore
+
+
+class ChatRequest(BaseModel):
+    question: str
+
+
+@lru_cache(maxsize=1)
+def get_bot() -> RAGChatbot:
+    return RAGChatbot(k=5)
+
+
+@app.post("/chat")
+def chat(req: ChatRequest):
+    bot = get_bot()
+    answer, sources = bot.ask(req.question)
+    return {
+        "answer": answer,
+        "sources": [
+            {
+                "title": s.get("title"),
+                "score": s.get("score"),
+                "article_id": s.get("article_id"),
+                "chunk_id": s.get("chunk_id"),
+            }
+            for s in sources
+        ],
+    }
+
+
+@app.get("/chat")
+def chat_usage():
+    return {
+        "message": "Use POST /chat with JSON body { 'question': '<your question>' }",
+        "example": {
+            "question": "What are the top topics in the articles?"
+        },
+        "docs": "/docs",
+    }

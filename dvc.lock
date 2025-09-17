@@ -31,10 +31,27 @@ stages:
       size: 193754
     - path: src/preprocessing/clean_articles.py
       hash: md5
-      md5: b9677f77f7a43ba7f7bee62203a933e5
-      size: 1187
+      md5: 88f9a195e7e01b34184b30fb6d8375cd
+      size: 1320
     outs:
     - path: data/processed/articles_cleaned.json
       hash: md5
       md5: 025278a119428b0fbc5789c1fcdb0263
       size: 187302
+  index:
+    cmd: python src/rag/build_index.py
+    deps:
+    - path: data/processed/articles_cleaned.json
+      hash: md5
+      md5: 025278a119428b0fbc5789c1fcdb0263
+      size: 187302
+    - path: src/rag/build_index.py
+      hash: md5
+      md5: 4d30205f0427501f4af1c2899d1d6b2f
+      size: 3021
+    outs:
+    - path: data/processed/index
+      hash: md5
+      md5: d235a8833083535d134ad6ec526f62b8.dir
+      size: 1105818
+      nfiles: 3

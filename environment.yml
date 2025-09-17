@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   # Core ML packages
-  - python=3.12
+  - python=3.11
   - pandas
   - scikit-learn
   - numpy
@@ -18,9 +18,17 @@ dependencies:
   - unidecode
   - pytest
   - fastapi
-  # Pip packages
+  - uvicorn
+  - dvc
+  - faiss-cpu
   - pip
+  - pytorch
+  - streamlit
+  # Pip packages
   - pip:
       - newspaper3k
       - feedparser
       - lxml_html_clean
+      - huggingface-hub
+      - transformers
+      - sentence-transformers

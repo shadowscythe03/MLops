@@ -16,3 +16,10 @@ stages:
       - data/raw/articles.json
     outs:
       - data/processed/articles_cleaned.json
+  index:
+    cmd: python src/rag/build_index.py
+    deps:
+      - src/rag/build_index.py
+      - data/processed/articles_cleaned.json
+    outs:
+      - data/processed/index
